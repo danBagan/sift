@@ -9,20 +9,21 @@
   "productName": "Sift",
   "main": "main.js",
   "config": {
-    "forge":{
+    "forge": {
       "packagerConfig": {
-        "icon": "./favicon"
-      }
+        "icon": "./favicon/favicon"
+      },
+      
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "setupIcon": "./favicon/favicon.ico" 
+          }
+        }
+      ]
     }
-  },
-  "makers": [
-    {
-      "name": "@electron-forge/maker-squirrel",
-      "config": {
-        "setupIcon": "imgs/favicon/favicon.ico"
-      }
-    }
-  ],
+  }
   "scripts": {
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",

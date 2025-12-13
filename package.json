@@ -11,19 +11,15 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "./favicon/favicon"
+        
       },
-      
       "makers": [
         {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "setupIcon": "./favicon/favicon.ico" 
-          }
+          "name": "@electron-forge/maker-squirrel"
         }
       ]
     }
-  }
+  },
   "scripts": {
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",

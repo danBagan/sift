@@ -1,5 +1,10 @@
+if (require('electron-squirrel-startup')) {
+    app.quit();
+};
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+
+app.setAppUserModelId("com.squirrel." + app.getName());
 
 function createWindow() {
     const iconPath = path.join(__dirname, 'imgs/favicon/favicon_alt.ico');

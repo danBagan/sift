@@ -21,7 +21,7 @@
           "name": "@electron-forge/publisher-github",
           "config": {
             "repository": {
-              "owner": "danielbagan00",
+              "owner": "danBagan",
               "name": "sift"
             },
             "draft": true,

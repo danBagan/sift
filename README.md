@@ -1,5 +1,5 @@
 <div align="center">
-# 🔨 Sift - Simple, Brutal & FREE Task Management
+    # 🔨 Sift - Simple, Brutal & FREE Task Management
 </div>
 <p align="center">
     <img src="imgs/favicon/favicon.ico"></p>

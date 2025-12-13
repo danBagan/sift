@@ -1,7 +1,7 @@
 # 🔨 Sift - Simple, Brutal & FREE Task Management
 
 <p align="center">
-  <img src="[Link to a prominent screenshot/logo of your app's UI]" alt="[Project Name] Neo-Brutalist Interface Screenshot" width="600"/>
+  <img src="imgs/assets/app.png" alt="[Project Name] Neo-Brutalist Interface Screenshot" width="600"/>
 </p>
 
 ## ✨ The Premise

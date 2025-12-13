@@ -1,4 +1,5 @@
 <div align="center">
+<h1 style="margin-bottom: 0;">🔨 Sift - Simple, Brutal & FREE Task Management</h1>
     # 🔨 Sift - Simple, Brutal & FREE Task Management
 </div>
 <p align="center">

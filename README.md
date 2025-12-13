@@ -1,5 +1,6 @@
+<center>
 # 🔨 Sift - Simple, Brutal & FREE Task Management
-
+</center>
 <p align="center">
     <img src="imgs/favicon/favicon.ico"></p>
 <p align="center">

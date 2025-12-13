@@ -32,26 +32,16 @@ We embrace a **Neo-Brutalist** design ethos—focusing on clarity, strong typogr
 
 This project is built to be fast, reliable, and cross-platform.
 
-- **Frontend:** [Your Frontend Framework/Library, e.g., React, Vue, Svelte]
-- **Desktop App:** [Your Desktop Framework, e.g., Electron, Tauri, Wails]
-- **Styling:** [CSS/Utility Framework, e.g., Vanilla CSS, Tailwind CSS (with specific custom brutalist config)]
-- **Language:** [Your Primary Language, e.g., JavaScript, TypeScript, Rust]
-
-> **[Optional: A quick note on why this stack was chosen]** > _Example: "The combination of [Framework] and [Desktop App] ensures a native-feeling experience while maintaining a minimal bundle size."_
+- **Frontend:** HTML, CSS & JavaScript
+- **Desktop App:** Electron.js
+- **Styling:** CSS
+- **Language:** JavaScript
 
 ---
 
 ## ⬇️ Installation & Getting Started
 
-**[Project Name]** is currently available for: **Windows**, **macOS**, and **Linux**.
-
-### 💻 Download the App
-
-Download the latest stable release from the links below:
-
-- **Windows (.exe):** [Link to your Windows release]
-- **macOS (.dmg):** [Link to your macOS release]
-- **Linux (.AppImage/.deb):** [Link to your Linux release]
+**Sift** is currently available for: **Windows**.
 
 ### 🏗️ Build from Source (For Developers)
 
@@ -59,8 +49,8 @@ If you prefer to build the application yourself or contribute to development:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [Your Repository URL]
-    cd [project-name]
+    git clone https://github.com/danBagan/sift.git
+    cd sift
     ```
 2.  **Install dependencies:**
     ```bash
@@ -68,27 +58,7 @@ If you prefer to build the application yourself or contribute to development:
     ```
 3.  **Run in development mode:**
     ```bash
-    npm run dev  # or yarn dev
-    ```
-4.  **Build for production:**
-    ```bash
-    npm run build
+    npm start  # or yarn dev
     ```
 
 ---
-
-## 🤝 Contribution
-
-We welcome contributions! Whether it's reporting a bug, suggesting a new feature, or submitting a pull request, your help is appreciated.
-
-1.  Fork the repository.
-2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4.  Push to the branch (`git push origin feature/AmazingFeature`).
-5.  Open a Pull Request.
-
----
-
-## 📜 License
-
-This project is open-source and released under the **[e.g., MIT License]**. See the `LICENSE` file for full details.

@@ -5,7 +5,7 @@
     <img src="imgs/favicon/favicon.ico"></p>
 <p align="center">
 
-  <img src="imgs/assets/app-2.png" alt="[Project Name] Neo-Brutalist Interface Screenshot" width="600"/>
+  <img src="imgs/assets/app-2.png" alt="Sift Neo-Brutalist Interface Screenshot" width="600"/>
 </p>
 
 ## ✨ The Premise
@@ -38,6 +38,8 @@ We embrace a **Neo-Brutalist** design ethos—focusing on clarity, strong typogr
 
   <img src="imgs/assets/app.png" alt="[Project Name] Neo-Brutalist Interface Screenshot" width="600"/>
 </p>
+
+---
 
 ## 🛠️ Technology Stack
 

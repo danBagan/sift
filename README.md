@@ -6,7 +6,7 @@
 
 ## ✨ The Premise
 
-Tired of feature bloat, complex pricing tiers, and interfaces that try too hard? **[Project Name]** is your antidote.
+Tired of feature bloat, complex pricing tiers, and interfaces that try too hard? **Sift** is your antidote.
 
 This is a lightweight, high-performance desktop application designed for task and project management, inspired by the utility of Trello but stripped down to the essentials.
 

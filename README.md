@@ -32,6 +32,13 @@ We embrace a **Neo-Brutalist** design ethos—focusing on clarity, strong typogr
 
 ---
 
+## 📷 Preview
+
+<p align="center">
+
+  <img src="imgs/assets/app.png" alt="[Project Name] Neo-Brutalist Interface Screenshot" width="600"/>
+</p>
+
 ## 🛠️ Technology Stack
 
 This project is built to be fast and reliable.

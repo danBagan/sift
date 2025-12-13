@@ -30,7 +30,7 @@ We embrace a **Neo-Brutalist** design ethos—focusing on clarity, strong typogr
 
 ## 🛠️ Technology Stack
 
-This project is built to be fast, reliable, and cross-platform.
+This project is built to be fast and reliable.
 
 - **Frontend:** HTML, CSS & JavaScript
 - **Desktop App:** Electron.js

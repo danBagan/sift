@@ -1,7 +1,9 @@
 # 🔨 Sift - Simple, Brutal & FREE Task Management
 
 <p align="center">
-<img src="imgs/favicon/favicon.ico">
+    <img src="imgs/favicon/favicon.ico"></p>
+<p align="center">
+
   <img src="imgs/assets/app.png" alt="[Project Name] Neo-Brutalist Interface Screenshot" width="600"/>
 </p>
 

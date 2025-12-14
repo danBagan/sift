@@ -1,7 +1,7 @@
 if (require('electron-squirrel-startup')) {
     app.quit();
 };
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
 app.setAppUserModelId("com.squirrel." + app.getName());
@@ -18,10 +18,13 @@ function createWindow() {
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
-            nodeIntegration: false
-        }
+            nodeIntegration: false,
+            devTools: false
+        },
+        autoHideMenuBar: true
     });
     win.loadFile(path.join(__dirname, 'index.html'));
+    Menu.setApplicationMenu(null);
 
     win.webContents.on('did-finish-load', () => {
         win.setTitle("Sift - Task Management Application");

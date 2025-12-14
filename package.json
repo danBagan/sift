@@ -1,6 +1,6 @@
 {
   "name": "sift",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A simple, lightweight task management desktop application",
   "author": {
     "name": "Dan Bagan",
@@ -42,7 +42,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "publish": "node -r dotenv/config ./node_modules/.bin/electron-forge publish"
   },
   "license": "ISC",
   "devDependencies": {
@@ -55,10 +55,10 @@
     "@electron-forge/plugin-fuses": "^7.10.2",
     "@electron-forge/publisher-github": "^7.10.2",
     "@electron/fuses": "^1.8.0",
+    "dotenv": "^17.2.3",
     "electron": "^39.2.7"
   },
   "dependencies": {
-    "dotenv": "^17.2.3",
     "electron-squirrel-startup": "^1.0.1"
   }
 }

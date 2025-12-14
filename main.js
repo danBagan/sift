@@ -1,10 +1,17 @@
-if (require('electron-squirrel-startup')) {
-    app.quit();
-};
 const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
-app.setAppUserModelId("com.squirrel." + app.getName());
+
+
+app.whenReady().then(() => {
+    app.setAppUserModelId("com.squirrel." + app.getName());
+
+    createWindow();
+});
+
+if (require('electron-squirrel-startup')) {
+    app.quit();
+};
 
 function createWindow() {
     const iconPath = path.join(__dirname, 'imgs/favicon/favicon_alt.ico');
@@ -36,7 +43,6 @@ function createWindow() {
     });
 }
 
-app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {

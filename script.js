@@ -5,6 +5,20 @@ let deletingCardId = null;
 let selectedTags = [];
 let activeFilters = [];
 
+
+function initializeForFirstTimeUser() {
+    const hasUsedBefore = localStorage.getItem('kanbanInitialized');
+
+    if (!hasUsedBefore) {
+        localStorage.clear();
+        cards = [];
+
+        localStorage.setItem('kanbanInitialized', 'true');
+
+        console.log("Welcome to Sift");
+    }
+}
+
 function loadSubtitle() {
     const saved = localStorage.getItem('kanbanSubtitle');
     if (saved) {
@@ -476,6 +490,8 @@ function logWindowSize() {
 }
 window.addEventListener('resize', logWindowSize);
 
+
+initializeForFirstTimeUser();
 
 loadSubtitle();
 

@@ -46,7 +46,17 @@
                             id="clearFilters">Clear</button>
                     </div>
                 </div>
-
+                <!-- Add this after the toolbar, before the board -->
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span class="progress-text">Overall Progress</span>
+                        <span class="progress-percentage"
+                            id="progressPercentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
                 <div class="board">
                     <div class="column" data-column="backlog">
                         <div class="column-header">

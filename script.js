@@ -44,6 +44,21 @@ function saveCards() {
     localStorage.setItem('kanbanCards', JSON.stringify(cards));
 }
 
+function updateProgressBar() {
+    const totalCards = cards.length;
+    const doneCards = cards.filter(c => c.column === 'done').length;
+
+    if (totalCards === 0) {
+        document.getElementById('progressFill').style.width = '0%';
+        document.getElementById('progressPercentage').textContent = '0%';
+        return;
+    }
+
+    const percentage = Math.round((doneCards / totalCards) * 100);
+    document.getElementById('progressFill').style.width = percentage + '%';
+    document.getElementById('progressPercentage').textContent = percentage + '%';
+}
+
 function renderAllCards() {
     document.querySelectorAll('.cards').forEach(container => {
         container.innerHTML = '';
@@ -54,6 +69,7 @@ function renderAllCards() {
     });
 
     updateCardCounts();
+    updateProgressBar();
 }
 
 function createCardElement(card) {

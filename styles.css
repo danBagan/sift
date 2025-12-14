@@ -634,3 +634,63 @@ h3.editing {
     padding: 60px;
     background: #fef6e4;
 }
+
+.progress-container {
+    margin-bottom: 30px;
+    background: #ffffff;
+    border: 4px solid #001858;
+    padding: 20px;
+    box-shadow: 6px 6px 0px #001858;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.progress-text {
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #001858;
+    font-size: 1.1em;
+}
+
+.progress-percentage {
+    font-weight: 900;
+    color: #001858;
+    font-size: 1.3em;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 40px;
+    background: #fef6e4;
+    border: 4px solid #001858;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #72ddf7;
+    border-right: 4px solid #001858;
+    transition: width 0.3s ease;
+    box-shadow: inset -4px 0 0 #001858;
+}
+
+/* Striped pattern for extra brutalism */
+.progress-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 10px,
+            rgba(0, 24, 88, 0.1) 10px,
+            rgba(0, 24, 88, 0.1) 20px);
+}

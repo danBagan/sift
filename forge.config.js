@@ -9,7 +9,11 @@ module.exports = {
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+        createDesktopShortcut: true,
+        setupIcon: './imgs/favicon/favicon_alt.ico',
+        name: "Sift"
+      },
     },
     {
       name: '@electron-forge/maker-zip',

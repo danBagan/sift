@@ -18,3 +18,9 @@ Thumbs.db
 
 # Environment Files
 .env
+
+#Vite build cache
+.vite/
+
+#Electron builder cache
+.cache/

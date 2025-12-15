@@ -54,7 +54,7 @@ This project is built to be fast and reliable.
 
 ## ⬇️ Installation & Getting Started
 
-**Sift** is currently available for: **Windows**.
+**Sift** is currently available for: **Windows(exe)** & **Linux(nupkg)**.
 
 ### 🏗️ Build from Source (For Developers)
 

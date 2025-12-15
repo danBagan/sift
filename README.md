@@ -45,7 +45,7 @@ We embrace a **Neo-Brutalist** design ethos—focusing on clarity, strong typogr
 
 This project is built to be fast and reliable.
 
-- **Frontend:** HTML, CSS & JavaScript
+- **Frontend:** HTML
 - **Desktop App:** Electron.js
 - **Styling:** CSS
 - **Language:** JavaScript

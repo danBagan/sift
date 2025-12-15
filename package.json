@@ -15,7 +15,10 @@
       },
       "makers": [
         {
-          "name": "@electron-forge/maker-squirrel"
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "setupIcon": "./imgs/favicon/favicon.ico"
+          }
         },
         {
           "name": "@electron-forge/maker-deb"

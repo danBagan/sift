@@ -37,7 +37,6 @@ We embrace a **Neo-Brutalist** design ethos—focusing on clarity, strong typogr
 <p align="center">
 
   <img src="imgs/assets/app.png" alt="[Project Name] Neo-Brutalist Interface Screenshot" width="600"/>
-  ---
   <img src="imgs/assets/app-card.png" alt="[Project Name] Neo-Brutalist Interface Screenshot" width="600"/>
 </p>
 

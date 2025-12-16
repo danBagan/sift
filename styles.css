@@ -35,6 +35,8 @@ body {
     padding: 20px;
     min-width: 100%;
     min-height: 100%;
+    display: inline-block;
+    width: fit-content;
 }
 
 /* Zoom controls in bottom left */
@@ -97,6 +99,7 @@ body {
 .container {
     max-width: 1400px;
     margin: 0 auto;
+    height: auto;
 }
 
 h1 {
@@ -227,6 +230,9 @@ h3.editing {
     padding: 20px;
     box-shadow: 8px 8px 0px #001858;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
 }
 
 .column-header {
@@ -261,6 +267,8 @@ h3.editing {
     display: flex;
     flex-direction: column;
     gap: 14px;
+    flex: 1;
+    margin-bottom: 10px;
 }
 
 .card {
@@ -434,7 +442,7 @@ h3.editing {
     background: #ff851b;
     color: #001858;
     padding: 14px;
-    margin-top: 10px;
+    margin-top: auto;
     font-size: 1em;
 }
 

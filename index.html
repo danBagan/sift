@@ -115,71 +115,6 @@
                         </div>
                     </div>
 
-                    <div class="modal" id="cardModal">
-                        <div class="modal-content">
-                            <h2 id="modalTitle">Add New Card</h2>
-                            <form id="cardForm">
-                                <div class="form-group">
-                                    <label for="cardText">Task
-                                        Description</label>
-                                    <textarea id="cardText" required
-                                        placeholder="Describe your task..."></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Priority</label>
-                                    <div class="priority-options">
-                                        <div class="priority-option low">
-                                            <input type="radio"
-                                                id="priority-low"
-                                                name="cardPriority" value="low">
-                                            <label
-                                                for="priority-low">Low</label>
-                                        </div>
-                                        <div class="priority-option medium">
-                                            <input type="radio"
-                                                id="priority-medium"
-                                                name="cardPriority"
-                                                value="medium"
-                                                checked>
-                                            <label
-                                                for="priority-medium">Medium</label>
-                                        </div>
-                                        <div class="priority-option high">
-                                            <input type="radio"
-                                                id="priority-high"
-                                                name="cardPriority"
-                                                value="high">
-                                            <label
-                                                for="priority-high">High</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Tags</label>
-                                    <div class="tag-selector">
-                                        <div class="tag-option tag-art"
-                                            data-tag="art">Art</div>
-                                        <div class="tag-option tag-code"
-                                            data-tag="code">Code</div>
-                                        <div class="tag-option tag-design"
-                                            data-tag="design">Design</div>
-                                        <div class="tag-option tag-audio"
-                                            data-tag="audio">Audio</div>
-                                        <div class="tag-option tag-ui"
-                                            data-tag="ui">UI</div>
-                                        <div class="tag-option tag-bug"
-                                            data-tag="bug">Bug</div>
-                                    </div>
-                                </div>
-                                <div class="modal-actions">
-                                    <button type="button" class="btn btn-cancel"
-                                        onclick="closeModal()">Cancel</button>
-                                    <button type="submit"
-                                        class="btn btn-save">Save</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
                 <h3 id="control-hint">Hold 'Middle Mouse Button' and drag to
                     move
@@ -214,6 +149,71 @@
                 <div class="zoom-level" id="zoomLevel">100%</div>
                 <button class="zoom-btn" id="zoomIn">+</button>
                 <button class="zoom-btn" id="resetZoom">⟲</button>
+            </div>
+            <div class="modal" id="cardModal">
+                <div class="modal-content">
+                    <h2 id="modalTitle">Add New Card</h2>
+                    <form id="cardForm">
+                        <div class="form-group">
+                            <label for="cardText">Task
+                                Description</label>
+                            <textarea id="cardText" required
+                                placeholder="Describe your task..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <div class="priority-options">
+                                <div class="priority-option low">
+                                    <input type="radio"
+                                        id="priority-low"
+                                        name="cardPriority" value="low">
+                                    <label
+                                        for="priority-low">Low</label>
+                                </div>
+                                <div class="priority-option medium">
+                                    <input type="radio"
+                                        id="priority-medium"
+                                        name="cardPriority"
+                                        value="medium"
+                                        checked>
+                                    <label
+                                        for="priority-medium">Medium</label>
+                                </div>
+                                <div class="priority-option high">
+                                    <input type="radio"
+                                        id="priority-high"
+                                        name="cardPriority"
+                                        value="high">
+                                    <label
+                                        for="priority-high">High</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Tags</label>
+                            <div class="tag-selector">
+                                <div class="tag-option tag-art"
+                                    data-tag="art">Art</div>
+                                <div class="tag-option tag-code"
+                                    data-tag="code">Code</div>
+                                <div class="tag-option tag-design"
+                                    data-tag="design">Design</div>
+                                <div class="tag-option tag-audio"
+                                    data-tag="audio">Audio</div>
+                                <div class="tag-option tag-ui"
+                                    data-tag="ui">UI</div>
+                                <div class="tag-option tag-bug"
+                                    data-tag="bug">Bug</div>
+                            </div>
+                        </div>
+                        <div class="modal-actions">
+                            <button type="button" class="btn btn-cancel"
+                                onclick="closeModal()">Cancel</button>
+                            <button type="submit"
+                                class="btn btn-save">Save</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <script src="script.js"></script>

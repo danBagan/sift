@@ -26,12 +26,12 @@ function createWindow() {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
             nodeIntegration: false,
-            devTools: false
+            //devTools: false
         },
-        autoHideMenuBar: true
+        //autoHideMenuBar: true
     });
     win.loadFile(path.join(__dirname, 'index.html'));
-    Menu.setApplicationMenu(null);
+    //Menu.setApplicationMenu(null);
 
     win.webContents.on('did-finish-load', () => {
         win.setTitle("Sift - Task Management Application");

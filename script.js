@@ -4,6 +4,15 @@ let editingCardId = null;
 let deletingCardId = null;
 let selectedTags = [];
 let activeFilters = [];
+// Canvas
+let scale = 1;
+let panX = 0;
+let panY = 0;
+let isPanning = false;
+let startX = 0;
+let startY = 0;
+const minScale = 0.5;
+const maxScale = 2.0;
 
 
 function initializeForFirstTimeUser() {
@@ -39,6 +48,97 @@ function loadCards() {
     }
     renderAllCards();
 }
+
+
+console.log('Canvas Wrapper: ', document.getElementById('canvasWrapper'));
+console.log('Canvas Content: ', document.getElementById('canvasContent'));
+console.log('Zoom in Button: ', document.getElementById('zoomIn'));
+const canvasWrapper = document.getElementById('canvasWrapper');
+const canvasContent = document.getElementById('canvasContent');
+
+function updateTransform() {
+    canvasContent.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+    document.getElementById('zoomLevel').textContent = Math.round(scale * 100) + '%';
+}
+
+// Mouse wheel zoom
+canvasWrapper.addEventListener('wheel', (e) => {
+    e.preventDefault();
+
+    const rect = canvasWrapper.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const delta = e.deltaY > 0 ? 0.9 : 1.1;
+    const newScale = Math.min(Math.max(scale * delta, minScale), maxScale);
+
+    // Zoom towards mouse position
+    const scaleChange = newScale / scale;
+    panX = mouseX - (mouseX - panX) * scaleChange;
+    panY = mouseY - (mouseY - panY) * scaleChange;
+
+    scale = newScale;
+    updateTransform();
+});
+
+// Middle mouse button pan
+canvasWrapper.addEventListener('mousedown', (e) => {
+    if (e.button === 1) { // Middle mouse button
+        e.preventDefault();
+        isPanning = true;
+        startX = e.clientX - panX;
+        startY = e.clientY - panY;
+        canvasWrapper.classList.add('panning');
+    }
+});
+
+canvasWrapper.addEventListener('mousemove', (e) => {
+    if (isPanning) {
+        panX = e.clientX - startX;
+        panY = e.clientY - startY;
+        updateTransform();
+    }
+});
+
+canvasWrapper.addEventListener('mouseup', (e) => {
+    if (e.button === 1) {
+        isPanning = false;
+        canvasWrapper.classList.remove('panning');
+    }
+});
+
+canvasWrapper.addEventListener('mouseleave', () => {
+    if (isPanning) {
+        isPanning = false;
+        canvasWrapper.classList.remove('panning');
+    }
+});
+
+// Zoom controls
+document.getElementById('zoomIn').addEventListener('click', () => {
+    scale = Math.min(scale * 1.2, maxScale);
+    updateTransform();
+});
+
+document.getElementById('zoomOut').addEventListener('click', () => {
+    scale = Math.max(scale * 0.8, minScale);
+    updateTransform();
+});
+
+document.getElementById('resetZoom').addEventListener('click', () => {
+    scale = 1;
+    panX = 0;
+    panY = 0;
+    updateTransform();
+});
+
+// Prevent middle mouse default behavior (scrolling)
+document.addEventListener('mousedown', (e) => {
+    if (e.button === 1) {
+        e.preventDefault();
+        return false;
+    }
+});
 
 function saveCards() {
     localStorage.setItem('kanbanCards', JSON.stringify(cards));

@@ -17,151 +17,171 @@
     <body>
         <img id="app-logo" src="imgs/favicon/favicon.ico"
             alt="Sift Software Logo">
-
-        <div class="screenshot-container">
-            <div class="container">
-                <!--<img src="imgs/favicon/favicon_alt.ico" alt="Logo"
+        <div class="canvas-wrapper" id="canvasWrapper">
+            <div class="canvas-content" id="canvasContent">
+                <div class="screenshot-container">
+                    <div class="container">
+                        <!--<img src="imgs/favicon/favicon_alt.ico" alt="Logo"
                     class="logo">-->
 
-                <!--<h1>Iron Forge - Kanban</h1>-->
-                <h3 id="subtitle" contenteditable="false">Click to edit
-                    subtitle</h3>
+                        <!--<h1>Iron Forge - Kanban</h1>-->
+                        <h3 id="subtitle" contenteditable="false">Click to edit
+                            subtitle</h3>
 
-                <div class="toolbar">
-                    <input type="text" class="search-box" id="searchBox"
-                        placeholder="Search cards... (Press / to focus)">
-                    <div class="filter-buttons">
-                        <button class="filter-btn"
-                            data-filter="art">Art</button>
-                        <button class="filter-btn"
-                            data-filter="code">Code</button>
-                        <button class="filter-btn"
-                            data-filter="design">Design</button>
-                        <button class="filter-btn"
-                            data-filter="audio">Audio</button>
-                        <button class="filter-btn" data-filter="ui">UI</button>
-                        <button class="filter-btn"
-                            data-filter="bug">Bug</button>
-                        <button class="clear-filters"
-                            id="clearFilters">Clear</button>
-                    </div>
-                </div>
-                <!-- Add this after the toolbar, before the board -->
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span class="progress-text">Overall Progress</span>
-                        <span class="progress-percentage"
-                            id="progressPercentage">0%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
-                </div>
-                <div class="board">
-                    <div class="column" data-column="backlog">
-                        <div class="column-header">
-                            <span class="column-title">📋 Backlog</span>
-                            <span class="card-count">0</span>
-                        </div>
-                        <div class="cards" data-column="backlog"></div>
-                        <button class="btn btn-add"
-                            onclick="openModal('backlog')">+ Add Card</button>
-                    </div>
-
-                    <div class="column" data-column="in-progress">
-                        <div class="column-header">
-                            <span class="column-title">🚀 In Progress</span>
-                            <span class="card-count">0</span>
-                        </div>
-                        <div class="cards" data-column="in-progress"></div>
-                        <button class="btn btn-add"
-                            onclick="openModal('in-progress')">+ Add
-                            Card</button>
-                    </div>
-
-                    <div class="column" data-column="testing">
-                        <div class="column-header">
-                            <span class="column-title">🧪 Testing</span>
-                            <span class="card-count">0</span>
-                        </div>
-                        <div class="cards" data-column="testing"></div>
-                        <button class="btn btn-add"
-                            onclick="openModal('testing')">+ Add Card</button>
-                    </div>
-
-                    <div class="column" data-column="done">
-                        <div class="column-header">
-                            <span class="column-title">✅ Done</span>
-                            <span class="card-count">0</span>
-                        </div>
-                        <div class="cards" data-column="done"></div>
-                        <button class="btn btn-add"
-                            onclick="openModal('done')">+ Add Card</button>
-                    </div>
-                </div>
-                <div class="export-section">
-                    <button class="btn-export" id="exportBtn">📸 Export as
-                        PNG</button>
-                </div>
-            </div>
-
-            <div class="modal" id="cardModal">
-                <div class="modal-content">
-                    <h2 id="modalTitle">Add New Card</h2>
-                    <form id="cardForm">
-                        <div class="form-group">
-                            <label for="cardText">Task Description</label>
-                            <textarea id="cardText" required
-                                placeholder="Describe your task..."></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Priority</label>
-                            <div class="priority-options">
-                                <div class="priority-option low">
-                                    <input type="radio" id="priority-low"
-                                        name="cardPriority" value="low">
-                                    <label for="priority-low">Low</label>
-                                </div>
-                                <div class="priority-option medium">
-                                    <input type="radio" id="priority-medium"
-                                        name="cardPriority" value="medium"
-                                        checked>
-                                    <label for="priority-medium">Medium</label>
-                                </div>
-                                <div class="priority-option high">
-                                    <input type="radio" id="priority-high"
-                                        name="cardPriority" value="high">
-                                    <label for="priority-high">High</label>
-                                </div>
+                        <div class="toolbar">
+                            <input type="text" class="search-box" id="searchBox"
+                                placeholder="Search cards... (Press / to focus)">
+                            <div class="filter-buttons">
+                                <button class="filter-btn"
+                                    data-filter="art">Art</button>
+                                <button class="filter-btn"
+                                    data-filter="code">Code</button>
+                                <button class="filter-btn"
+                                    data-filter="design">Design</button>
+                                <button class="filter-btn"
+                                    data-filter="audio">Audio</button>
+                                <button class="filter-btn"
+                                    data-filter="ui">UI</button>
+                                <button class="filter-btn"
+                                    data-filter="bug">Bug</button>
+                                <button class="clear-filters"
+                                    id="clearFilters">Clear</button>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Tags</label>
-                            <div class="tag-selector">
-                                <div class="tag-option tag-art"
-                                    data-tag="art">Art</div>
-                                <div class="tag-option tag-code"
-                                    data-tag="code">Code</div>
-                                <div class="tag-option tag-design"
-                                    data-tag="design">Design</div>
-                                <div class="tag-option tag-audio"
-                                    data-tag="audio">Audio</div>
-                                <div class="tag-option tag-ui"
-                                    data-tag="ui">UI</div>
-                                <div class="tag-option tag-bug"
-                                    data-tag="bug">Bug</div>
+                        <!-- Add this after the toolbar, before the board -->
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span class="progress-text">Overall
+                                    Progress</span>
+                                <span class="progress-percentage"
+                                    id="progressPercentage">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"
+                                    id="progressFill"></div>
                             </div>
                         </div>
-                        <div class="modal-actions">
-                            <button type="button" class="btn btn-cancel"
-                                onclick="closeModal()">Cancel</button>
-                            <button type="submit"
-                                class="btn btn-save">Save</button>
+                        <div class="board">
+                            <div class="column" data-column="backlog">
+                                <div class="column-header">
+                                    <span class="column-title">📋 Backlog</span>
+                                    <span class="card-count">0</span>
+                                </div>
+                                <div class="cards" data-column="backlog"></div>
+                                <button class="btn btn-add"
+                                    onclick="openModal('backlog')">+ Add
+                                    Card</button>
+                            </div>
+
+                            <div class="column" data-column="in-progress">
+                                <div class="column-header">
+                                    <span class="column-title">🚀 In
+                                        Progress</span>
+                                    <span class="card-count">0</span>
+                                </div>
+                                <div class="cards"
+                                    data-column="in-progress"></div>
+                                <button class="btn btn-add"
+                                    onclick="openModal('in-progress')">+ Add
+                                    Card</button>
+                            </div>
+
+                            <div class="column" data-column="testing">
+                                <div class="column-header">
+                                    <span class="column-title">🧪 Testing</span>
+                                    <span class="card-count">0</span>
+                                </div>
+                                <div class="cards" data-column="testing"></div>
+                                <button class="btn btn-add"
+                                    onclick="openModal('testing')">+ Add
+                                    Card</button>
+                            </div>
+
+                            <div class="column" data-column="done">
+                                <div class="column-header">
+                                    <span class="column-title">✅ Done</span>
+                                    <span class="card-count">0</span>
+                                </div>
+                                <div class="cards" data-column="done"></div>
+                                <button class="btn btn-add"
+                                    onclick="openModal('done')">+ Add
+                                    Card</button>
+                            </div>
                         </div>
-                    </form>
+                        <div class="export-section">
+                            <button class="btn-export" id="exportBtn">📸 Export
+                                as
+                                PNG</button>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="cardModal">
+                        <div class="modal-content">
+                            <h2 id="modalTitle">Add New Card</h2>
+                            <form id="cardForm">
+                                <div class="form-group">
+                                    <label for="cardText">Task
+                                        Description</label>
+                                    <textarea id="cardText" required
+                                        placeholder="Describe your task..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Priority</label>
+                                    <div class="priority-options">
+                                        <div class="priority-option low">
+                                            <input type="radio"
+                                                id="priority-low"
+                                                name="cardPriority" value="low">
+                                            <label
+                                                for="priority-low">Low</label>
+                                        </div>
+                                        <div class="priority-option medium">
+                                            <input type="radio"
+                                                id="priority-medium"
+                                                name="cardPriority"
+                                                value="medium"
+                                                checked>
+                                            <label
+                                                for="priority-medium">Medium</label>
+                                        </div>
+                                        <div class="priority-option high">
+                                            <input type="radio"
+                                                id="priority-high"
+                                                name="cardPriority"
+                                                value="high">
+                                            <label
+                                                for="priority-high">High</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tags</label>
+                                    <div class="tag-selector">
+                                        <div class="tag-option tag-art"
+                                            data-tag="art">Art</div>
+                                        <div class="tag-option tag-code"
+                                            data-tag="code">Code</div>
+                                        <div class="tag-option tag-design"
+                                            data-tag="design">Design</div>
+                                        <div class="tag-option tag-audio"
+                                            data-tag="audio">Audio</div>
+                                        <div class="tag-option tag-ui"
+                                            data-tag="ui">UI</div>
+                                        <div class="tag-option tag-bug"
+                                            data-tag="bug">Bug</div>
+                                    </div>
+                                </div>
+                                <div class="modal-actions">
+                                    <button type="button" class="btn btn-cancel"
+                                        onclick="closeModal()">Cancel</button>
+                                    <button type="submit"
+                                        class="btn btn-save">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-
             <div class="modal confirm-modal" id="confirmModal">
                 <div class="modal-content">
                     <h2>Delete Card</h2>
@@ -184,6 +204,12 @@
                     <li><kbd>ESC</kbd> Close modal</li>
                     <li><kbd>?</kbd> Toggle this help</li>
                 </ul>
+            </div>
+            <div class="zoom-controls">
+                <button class="zoom-btn" id="zoomOut">-</button>
+                <div class="zoom-level" id="zoomLevel">100%</div>
+                <button class="zoom-btn" id="zoomIn">+</button>
+                <button class="zoom-btn" id="resetZoom">⟲</button>
             </div>
         </div>
         <script src="script.js"></script>

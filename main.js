@@ -1,11 +1,11 @@
-const { app, BrowserWindow, Menu, shell, dialog } = require('electron');
+const { app, BrowserWindow, Menu, shell, dialog, ipcMain } = require('electron');
 const https = require('https');
 const path = require('path');
 
 
 function checkForUpdates() {
-    const currentVersion = app.getVersion(); // Gets version from package.json
 
+    const currentVersion = app.getVersion(); // Gets version from package.json
     const options = {
         hostname: 'api.github.com',
         path: '/repos/danBagan/sift/releases/latest',
@@ -52,6 +52,11 @@ function checkForUpdates() {
 }
 
 app.whenReady().then(() => {
+    console.log('='.repeat(40));
+    console.log('Sift');
+    console.log('Version:', app.getVersion());
+    console.log('='.repeat(40));
+
     app.setAppUserModelId("com.squirrel." + app.getName());
 
     createWindow();
@@ -84,8 +89,11 @@ function createWindow() {
     //Menu.setApplicationMenu(null);
 
     win.webContents.on('did-finish-load', () => {
+
+
         win.setTitle("Sift - Task Management Application");
         checkForUpdates();
+
     });
 
     win.once('ready-to-show', () => {
@@ -94,6 +102,9 @@ function createWindow() {
     });
 }
 
+ipcMain.handle('get-app-version', () => {
+    return app.getVersion();
+});
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {

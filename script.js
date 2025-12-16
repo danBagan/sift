@@ -50,9 +50,19 @@ function loadCards() {
 }
 
 
-console.log('Canvas Wrapper: ', document.getElementById('canvasWrapper'));
-console.log('Canvas Content: ', document.getElementById('canvasContent'));
-console.log('Zoom in Button: ', document.getElementById('zoomIn'));
+// ----------- Display App Version  -----------
+async function displayVersion() {
+    try {
+        const version = await window.electronAPI.getAppVersion();
+        document.getElementById('versionInfo').textContent = `v${version}`;
+    } catch (err) {
+        console.error('Error fetching app version:', err);
+        document.getElementById('versionInfo').textContent = 'v?';
+    }
+}
+// --------------------------------------------
+
+
 const canvasWrapper = document.getElementById('canvasWrapper');
 const canvasContent = document.getElementById('canvasContent');
 const controlHint = document.getElementById('control-hint');
@@ -489,7 +499,7 @@ document.addEventListener('keydown', (e) => {
     }
 
     // / - Focus search
-    if (e.key === '/') {
+    if (e.key === 'tab') {
         e.preventDefault();
         document.getElementById('searchBox').focus();
     }
@@ -500,8 +510,16 @@ document.addEventListener('keydown', (e) => {
         openModal('backlog');
     }
 
+    if (e.key === '.') {
+        e.preventDefault();
+        scale = 1;
+        panX = 0;
+        panY = 0;
+        updateTransform();
+    }
+
     // ? - Toggle keyboard shortcuts help
-    if (e.key === '?') {
+    if (e.key === '?' || e.key === '/') {
         e.preventDefault();
         const shortcuts = document.getElementById('shortcuts');
         shortcuts.classList.toggle('hide');
@@ -569,6 +587,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, delayBeforeFade);
 
+    displayVersion();
+
 });
 
 document.getElementById('exportBtn').addEventListener('click', function () {
@@ -631,7 +651,7 @@ document.getElementById('exportBtn').addEventListener('click', function () {
 function logWindowSize() {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    console.log(`Window size: ${width}x${height}`);
+    //console.log(`Window size: ${width}x${height}`);
 }
 window.addEventListener('resize', logWindowSize);
 

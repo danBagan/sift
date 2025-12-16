@@ -1,16 +1,14 @@
-const { app, BrowserWindow, Menu, shell, dialog, ipcMain } = require('electron');
+const { app, BrowserWindow, Menu, shell, dialog, ipcMain, Notification } = require('electron');
 const https = require('https');
 const path = require('path');
 const GLOBAL_currentVersion = app.getVersion();
 
 const customTemplate = [
-    // --- 1. First Menu Item (e.g., File Menu) ---
     {
         label: 'Info',
         submenu: [
             {
                 label: 'View Version',
-                // Example: Using a custom role (accelerator shortcut is usually automatic)
                 accelerator: 'CmdOrCtrl+N',
                 click: () => {
                     dialog.showMessageBox({
@@ -77,6 +75,7 @@ function checkForUpdates() {
     });
 }
 
+
 app.whenReady().then(() => {
     console.log('='.repeat(40));
     console.log('Sift');
@@ -93,6 +92,9 @@ app.whenReady().then(() => {
 if (require('electron-squirrel-startup')) {
     app.quit();
 };
+
+
+
 
 function createWindow() {
     const iconPath = path.join(__dirname, 'imgs/favicon/favicon_alt.ico');

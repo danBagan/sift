@@ -768,3 +768,21 @@ h3.editing {
             rgba(0, 24, 88, 0.1) 10px,
             rgba(0, 24, 88, 0.1) 20px);
 }
+
+/* Initial State: Fully visible, set up transition */
+#welcome-message {
+    position: fixed;
+    /* Optional: Position it fixed on the screen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    opacity: 1;
+    transition: opacity 3s ease-in-out;
+    /* Fade animation over 1 second */
+}
+
+/* Final State: Hidden, but still occupying space */
+.fade-out {
+    opacity: 0;
+}

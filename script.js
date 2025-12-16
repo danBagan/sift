@@ -55,6 +55,7 @@ console.log('Canvas Content: ', document.getElementById('canvasContent'));
 console.log('Zoom in Button: ', document.getElementById('zoomIn'));
 const canvasWrapper = document.getElementById('canvasWrapper');
 const canvasContent = document.getElementById('canvasContent');
+const controlHint = document.getElementById('control-hint');
 
 function updateTransform() {
     canvasContent.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
@@ -542,6 +543,34 @@ subtitle.addEventListener('keydown', (e) => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const messageElement = document.getElementById('control-hint');
+    if (!messageElement) return;
+
+    // --- Configuration ---
+    const delayBeforeFade = 9000; // 3 seconds delay before starting the fade
+    const fadeDuration = 3000; // 1 second fade duration (must match CSS transition time)
+    // ---------------------
+
+    // 1. Wait for the delay
+    setTimeout(() => {
+        // Start the fade out by adding the CSS class
+        messageElement.classList.add('fade-out');
+
+        // 2. Wait for the fade animation to finish
+        messageElement.addEventListener('transitionend', function handler() {
+
+            // Remove the element from the DOM (makes it truly disappear, not just invisible)
+            messageElement.remove();
+
+            // Remove the event listener to prevent it from firing again
+            messageElement.removeEventListener('transitionend', handler);
+
+        });
+    }, delayBeforeFade);
+
+});
+
 document.getElementById('exportBtn').addEventListener('click', function () {
     const button = this;
     const originalText = button.textContent;
@@ -605,6 +634,8 @@ function logWindowSize() {
     console.log(`Window size: ${width}x${height}`);
 }
 window.addEventListener('resize', logWindowSize);
+
+
 
 
 initializeForFirstTimeUser();

@@ -27,6 +27,7 @@ We embrace a **Neo-Brutalist** design ethos—focusing on clarity, strong typogr
 | **Neo-Brutalist UI**      | Bold colors, strong borders, high-contrast elements. An interface that gets out of your way.   | **Speed & Clarity**     |
 | **Lightweight Engine**    | Built for desktop performance. Low CPU/Memory usage, instant responsiveness.                   | **Efficiency**          |
 | **Familiar Board System** | Organize tasks into columns (To Do, In Progress, Done, etc.)—just like the best task managers. | **Instant Familiarity** |
+| **Canvas Focused**        | Download and run. No complicated installation process.                                         | **Dragable Area**       |
 | **100% FREE**             | No sign-ups, no subscriptions, no ads, no "Pro" version.                                       | **Accessibility**       |
 | **Portable**              | Download and run. No complicated installation process.                                         | **Zero Friction**       |
 

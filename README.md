@@ -38,7 +38,6 @@ We embrace a **Neo-Brutalist** design ethos—focusing on clarity, strong typogr
 <p align="center">
 
   <img src="imgs/assets/app.png" alt="Sift Neo-Brutalist Interface Screenshot" width="600"/>
-  <img src="imgs/assets/app-card.png" alt="Sift Neo-Brutalist Interface Screenshot" width="600"/>
   <img src="imgs/assets/app-showcase.gif" alt="Sift Neo-Brutalist Animated Gif" width="600"/>
 </p>
 

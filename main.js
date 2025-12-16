@@ -1,9 +1,55 @@
-const { app, BrowserWindow, Menu } = require('electron');
-const { autoUpdater } = require('electron-updater');
+const { app, BrowserWindow, Menu, shell, dialog } = require('electron');
+const https = require('https');
 const path = require('path');
 
-autoUpdater.autoDownload = false;
-autoUpdater.autoInstallOnAppQuit = true;
+
+function checkForUpdates() {
+    const currentVersion = app.getVersion(); // Gets version from package.json
+
+    const options = {
+        hostname: 'api.github.com',
+        path: '/repos/danBagan/sift/releases/latest',
+        headers: {
+            'User-Agent': 'Sift-App'
+        }
+    };
+
+    https.get(options, (res) => {
+        let data = '';
+
+        res.on('data', (chunk) => {
+            data += chunk;
+        });
+
+        res.on('end', () => {
+            try {
+                const release = JSON.parse(data);
+                const latestVersion = release.tag_name.replace('v', '');
+
+                console.log(`Current: ${currentVersion}, Latest: ${latestVersion}`);
+
+                if (latestVersion > currentVersion) {
+                    dialog.showMessageBox({
+                        type: 'info',
+                        title: 'Update Available',
+                        message: `Version ${latestVersion} is available!`,
+                        detail: `You're running version ${currentVersion}.\n\nClick OK to download.`,
+                        buttons: ['Download', 'Later'],
+                        defaultId: 0
+                    }).then(result => {
+                        if (result.response === 0) {
+                            shell.openExternal(release.html_url);
+                        }
+                    });
+                }
+            } catch (err) {
+                console.error('Error checking for updates:', err);
+            }
+        });
+    }).on('error', (err) => {
+        console.error('Error checking for updates:', err);
+    });
+}
 
 app.whenReady().then(() => {
     app.setAppUserModelId("com.squirrel." + app.getName());
@@ -11,58 +57,7 @@ app.whenReady().then(() => {
     createWindow();
 });
 
-autoUpdater.on('update-available', (info) => {
-    console.log('Update available:', info.version);
 
-    const { dialog } = require('electron');
-    dialog.showMessageBox({
-        type: 'info',
-        title: 'Update Available',
-        message: `A new version (${info.version}) is available. Do you want to download and install it now?`,
-        buttons: ['Yes', 'No'],
-        defaultId: 0
-    }).then(result => {
-        if (result.response === 0) {
-            autoUpdater.downloadUpdate();
-        }
-    });
-});
-
-autoUpdater.on('update-not-available', () => {
-    console.log('No updates available.');
-});
-
-autoUpdater.on('download-progress', (progressObj) => {
-    console.log(`Download speed: ${progressObj.bytesPerSecond}`);
-    console.log(`Downloaded ${progressObj.percent}%`);
-});
-
-autoUpdater.on('update-downloaded', () => {
-    const { dialog } = require('electron');
-    dialog.showMessageBox({
-        type: 'info',
-        title: 'Update Ready',
-        message: 'Update downloaded. The app will restart to install.',
-        buttons: ['Restart Now', 'Later'],
-        defaultId: 0
-    }).then(result => {
-        if (result.response === 0) {
-            autoUpdater.quitAndInstall();
-        }
-    });
-});
-
-autoUpdater.on('error', (err) => {
-    const { dialog } = require('electron');
-    dialog.showMessageBox({
-        type: 'error',
-        title: 'Update Error',
-        message: `An error occurred while updating: ${err.message}`,
-        buttons: ['OK'],
-        defaultId: 0
-    });
-    console.error('Auto-updater error:', err);
-});
 
 if (require('electron-squirrel-startup')) {
     app.quit();
@@ -90,7 +85,7 @@ function createWindow() {
 
     win.webContents.on('did-finish-load', () => {
         win.setTitle("Sift - Task Management Application");
-        autoUpdater.checkForUpdates();
+        checkForUpdates();
     });
 
     win.once('ready-to-show', () => {

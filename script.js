@@ -562,6 +562,7 @@ subtitle.addEventListener('keydown', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+
     const messageElement = document.getElementById('control-hint');
     if (!messageElement) return;
 

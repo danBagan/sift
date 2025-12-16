@@ -1,7 +1,33 @@
 const { app, BrowserWindow, Menu, shell, dialog, ipcMain } = require('electron');
 const https = require('https');
 const path = require('path');
+const GLOBAL_currentVersion = app.getVersion();
 
+const customTemplate = [
+    // --- 1. First Menu Item (e.g., File Menu) ---
+    {
+        label: 'Info',
+        submenu: [
+            {
+                label: 'View Version',
+                // Example: Using a custom role (accelerator shortcut is usually automatic)
+                accelerator: 'CmdOrCtrl+N',
+                click: () => {
+                    dialog.showMessageBox({
+                        type: 'info',
+                        title: 'Version',
+                        message: `Version ${GLOBAL_currentVersion}`,
+                        detail: `You're running version ${GLOBAL_currentVersion}.`,
+                        buttons: ['OK'],
+                        defaultId: 0
+                    }).then(result => {
+                        console.log('Version info dialog closed');
+                    });
+                }
+            },
+        ]
+    },
+];
 
 function checkForUpdates() {
 
@@ -85,6 +111,10 @@ function createWindow() {
         },
         autoHideMenuBar: true
     });
+
+    //const customMenu = Menu.buildFromTemplate(customTemplate);
+    //Menu.setApplicationMenu(customMenu);
+
     win.loadFile(path.join(__dirname, 'index.html'));
     //Menu.setApplicationMenu(null);
 

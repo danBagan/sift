@@ -73,7 +73,7 @@ If you prefer to build the application yourself or contribute to development:
     ```
 3.  **Run in development mode:**
     ```bash
-    npm start  # or yarn dev
+    npm run start  # or yarn dev
     ```
 
 ---

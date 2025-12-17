@@ -99,8 +99,8 @@ if (require('electron-squirrel-startup')) {
 function createWindow() {
     const iconPath = path.join(__dirname, 'imgs/favicon/favicon_alt.ico');
     const win = new BrowserWindow({
-        minWidth: 1535,
-        minHeight: 860,
+        //minWidth: 1535,
+        //minHeight: 860,
         title: "Sift - Task Management Application",
         icon: iconPath,
         show: false,
@@ -130,6 +130,7 @@ function createWindow() {
 
     win.once('ready-to-show', () => {
         win.center();
+        win.maximize();
         win.show();
     });
 }

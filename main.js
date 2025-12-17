@@ -57,8 +57,8 @@ function checkForUpdates() {
                         type: 'info',
                         title: 'Update Available',
                         message: `Version ${latestVersion} is available!`,
-                        detail: `You're running version ${currentVersion}.`,
-                        buttons: ['Download', 'Not Now'],
+                        detail: `You're running version ${currentVersion}.\n\nClick OK to download.`,
+                        buttons: ['Download', 'Later'],
                         defaultId: 0
                     }).then(result => {
                         if (result.response === 0) {

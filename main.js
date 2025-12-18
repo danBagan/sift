@@ -3,29 +3,24 @@ const https = require('https');
 const path = require('path');
 const GLOBAL_currentVersion = app.getVersion();
 
-const customTemplate = [
-    {
-        label: 'Info',
-        submenu: [
-            {
-                label: 'View Version',
-                accelerator: 'CmdOrCtrl+N',
-                click: () => {
-                    dialog.showMessageBox({
-                        type: 'info',
-                        title: 'Version',
-                        message: `Version ${GLOBAL_currentVersion}`,
-                        detail: `You're running version ${GLOBAL_currentVersion}.`,
-                        buttons: ['OK'],
-                        defaultId: 0
-                    }).then(result => {
-                        console.log('Version info dialog closed');
-                    });
-                }
-            },
-        ]
+
+const isMac = process.platform === 'darwin';
+const customTemplate = [{
+    role: 'appMenu',
+    submenu: [{
+        label: 'Open GitHub Page',
+        click: async () => {
+            const { shell } = require('electron');
+            await shell.openExternal("https://github.com/danBagan/sift");
+        }
     },
-];
+    {
+        label: 'Check For Updates',
+        click: async () => {
+            await shell.openExternal("https://github.com/danBagan/sift/releases/latest")
+        }
+    }],
+}];
 
 function checkForUpdates() {
 
@@ -115,8 +110,8 @@ function createWindow() {
         autoHideMenuBar: true
     });
 
-    //const customMenu = Menu.buildFromTemplate(customTemplate);
-    //Menu.setApplicationMenu(customMenu);
+    const customMenu = Menu.buildFromTemplate(customTemplate);
+    Menu.setApplicationMenu(customMenu);
 
     win.loadFile(path.join(__dirname, 'index.html'));
     //Menu.setApplicationMenu(null);

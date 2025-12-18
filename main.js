@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, shell, dialog, ipcMain, Notification } = require('electron');
+const { app, BrowserWindow, Menu, shell, dialog, ipcMain, Notification, ipcRenderer } = require('electron');
 const https = require('https');
 const path = require('path');
 const GLOBAL_currentVersion = app.getVersion();
@@ -8,7 +8,7 @@ const isMac = process.platform === 'darwin';
 const customTemplate = [{
     role: 'appMenu',
     submenu: [{
-        label: 'Open GitHub Page',
+        label: 'GitHub Page',
         click: async () => {
             const { shell } = require('electron');
             await shell.openExternal("https://github.com/danBagan/sift");
@@ -17,7 +17,7 @@ const customTemplate = [{
     {
         label: 'Check For Updates',
         click: async () => {
-            await shell.openExternal("https://github.com/danBagan/sift/releases/latest")
+            await shell.openExternal("https://github.com/danBagan/sift/releases/latest");
         }
     }],
 }];
@@ -73,7 +73,7 @@ function checkForUpdates() {
 
 app.whenReady().then(() => {
     console.log('='.repeat(40));
-    console.log('Sift');
+    console.log('Sift ------------ Created By Dan Bagan');
     console.log('Version:', app.getVersion());
     console.log('='.repeat(40));
 
@@ -130,6 +130,7 @@ function createWindow() {
         win.show();
     });
 }
+
 
 ipcMain.handle('get-app-version', () => {
     return app.getVersion();

@@ -38,7 +38,10 @@
                         <!--<img src="imgs/favicon/favicon_alt.ico" alt="Logo"
                     class="logo">-->
 
-                        <!--<h1>Iron Forge - Kanban</h1>-->
+                        <!--
+                        <h1><span class="stats" id="stats">(0 cards, 0%
+                                done)</span></h1>
+                                -->
                         <h3 id="subtitle" contenteditable="false">Click to edit
                             subtitle</h3>
 
@@ -60,6 +63,7 @@
                                     data-filter="bug">Bug</button>
                                 <button class="clear-filters"
                                     id="clearFilters">Clear</button>
+
                             </div>
                         </div>
                         <!-- Add this after the toolbar, before the board -->
@@ -156,16 +160,20 @@
                     <li><kbd>ESC</kbd> Close modal</li>
                     <li><kbd>.</kbd> Reset Canvas</li>
                     <li><kbd>?</kbd> Toggle this help</li>
+                    <li><kbd>Middle Mouse Button</kbd> to move canvas</li>
 
                 </ul>
 
             </div>
 
             <div class="zoom-controls">
-                <button class="zoom-btn" id="zoomOut">-</button>
+                <button class="zoom-btn" id="zoomOut"
+                    title="Canvas Zoom Out">-</button>
                 <div class="zoom-level" id="zoomLevel">100%</div>
-                <button class="zoom-btn" id="zoomIn">+</button>
-                <button class="zoom-btn" id="resetZoom">⟲</button>
+                <button class="zoom-btn" id="zoomIn"
+                    title="Canvas Zoom In">+</button>
+                <button class="zoom-btn" id="resetZoom"
+                    title="Reset Canvas">⟲</button>
             </div>
             <div class="version-info" id="versionInfo">v1.0.0</div>
             <div class="modal" id="cardModal">

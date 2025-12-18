@@ -50,6 +50,8 @@ function loadCards() {
 }
 
 
+
+
 // ----------- Display App Version  -----------
 async function displayVersion() {
     try {
@@ -151,6 +153,8 @@ document.addEventListener('mousedown', (e) => {
     }
 });
 
+
+
 function saveCards() {
     localStorage.setItem('kanbanCards', JSON.stringify(cards));
 }
@@ -171,6 +175,7 @@ function updateProgressBar() {
 }
 
 function renderAllCards() {
+
     document.querySelectorAll('.cards').forEach(container => {
         container.innerHTML = '';
     });
@@ -180,6 +185,7 @@ function renderAllCards() {
     });
 
     updateCardCounts();
+    updateStats();
     updateProgressBar();
 }
 
@@ -343,6 +349,7 @@ function confirmDelete() {
         cards = cards.filter(c => c.id !== deletingCardId);
         saveCards();
         renderAllCards();
+        updateStats();
         closeConfirmModal();
     }
 }
@@ -384,6 +391,36 @@ function applyFilters() {
         }
     });
 }
+
+/* FUNCTION: Sort Columnn 
+function sortColumn(columnName) {
+    const columnCards = cards.filter(c => c.column === columnName);
+    const priorityOrder = { high: 0, medium: 1, low: 2 };
+
+    columnCards.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+
+    // Update cards array
+    cards = cards.filter(c => c.column !== columnName).concat(columnCards);
+    saveCards();
+    renderAllCards();
+}
+*/
+
+// Updating Stats
+function updateStats() {
+    const total = cards.length;
+    const done = cards.filter(c => c.column === 'done').length;
+    const percent = total > 0 ? Math.round((done / total) * 100) : 0;
+
+    const statsEl = document.getElementById('stats');
+
+    if (statsEl) {
+        statsEl.textContent = `(${total} cards, ${percent}% done)`;
+    }
+}
+
+
+
 
 document.getElementById('cardForm').addEventListener('submit', e => {
     e.preventDefault();
@@ -606,7 +643,6 @@ document.getElementById('exportBtn').addEventListener('click', function () {
         scale: 2,
         logging: false
     }).then(canvas => {
-        // Create a new canvas with padding
         const padding = 60;
         const newCanvas = document.createElement('canvas');
         newCanvas.width = canvas.width + (padding * 2);
@@ -618,7 +654,6 @@ document.getElementById('exportBtn').addEventListener('click', function () {
         ctx.drawImage(canvas, padding, padding);
 
         newCanvas.toBlob((blob) => {
-            // --- 👇 NEW CODE STARTS HERE 👇 ---
             const now = new Date();
 
             // YYYY-MM-DD format (e.g., 2025-12-13)
@@ -635,7 +670,6 @@ document.getElementById('exportBtn').addEventListener('click', function () {
 
             const timePart = `${hours}-${minutes}`;
 
-            // Combine with underscore separator: kanban-board-2025-12-13_05-30.png
             const filename = `kanban-board-${datePart}_${timePart}.png`;
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
@@ -650,6 +684,7 @@ document.getElementById('exportBtn').addEventListener('click', function () {
     });
 });
 
+//Testing
 function logWindowSize() {
     const width = window.innerWidth;
     const height = window.innerHeight;

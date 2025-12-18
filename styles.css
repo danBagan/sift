@@ -805,7 +805,7 @@ h3.editing {
     font-family: 'Space Grotesk', 'Arial Black', Arial, sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 4px 4px 0px #001858;
+    /**box-shadow: 4px 4px 0px #001858;**/
 }
 
 /* Optional: Make it more visible on hover */

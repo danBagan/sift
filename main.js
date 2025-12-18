@@ -103,6 +103,7 @@ function createWindow() {
         //minHeight: 860,
         title: "Sift - Task Management Application",
         icon: iconPath,
+        backgroundColor: '#fef6e4',
         show: false,
         center: true,
         webPreferences: {

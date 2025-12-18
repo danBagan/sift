@@ -561,20 +561,21 @@ subtitle.addEventListener('keydown', (e) => {
     }
 });
 
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const messageElement = document.getElementById('control-hint');
     if (!messageElement) return;
 
     // --- Configuration ---
-    const delayBeforeFade = 9000; // 3 seconds delay before starting the fade
-    const fadeDuration = 3000; // 1 second fade duration (must match CSS transition time)
+    const delayBeforeFade = 9000; // 9 seconds delay before starting the fade
+    const fadeDuration = 3000; // 3 second fade duration (must match CSS transition time)
     // ---------------------
 
     // 1. Wait for the delay
     setTimeout(() => {
         // Start the fade out by adding the CSS class
-        messageElement.classList.add('fade-out');
+        messageElement.classList.add('welcome-fade');
 
         // 2. Wait for the fade animation to finish
         messageElement.addEventListener('transitionend', function handler() {

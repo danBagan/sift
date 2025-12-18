@@ -19,6 +19,18 @@
     <body>
         <img id="app-logo" src="imgs/favicon/favicon.ico"
             alt="Sift Software Logo">
+
+        <div class="splash-screen" id="splashScreen">
+            <div class="splash-container">
+                <img src="imgs/assets/app-name.png" alt="Sift Logo"
+                    class="splash-logo">
+                <div class="loading-bar-container">
+                    <div class="loading-bar"></div>
+                </div>
+                <div class="loading-text">Loading...</div>
+            </div>
+        </div>
+
         <div class="canvas-wrapper" id="canvasWrapper">
             <div class="canvas-content" id="canvasContent">
                 <div class="screenshot-container">
@@ -223,6 +235,19 @@
             </div>
         </div>
         <script src="script.js"></script>
+        <script>
+        // Show body immediately
+        document.body.classList.add('ready');
+        
+        // Hide splash after delay
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splashScreen');
+                splash.classList.add('fade-out');
+                setTimeout(() => splash.remove(), 500);
+            }, 2000);
+        });
+    </script>
         <script
             src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     </body>

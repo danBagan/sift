@@ -3,6 +3,11 @@ const https = require('https');
 const path = require('path');
 const GLOBAL_currentVersion = app.getVersion();
 
+
+//AUDIO SECTION
+
+// ------------
+
 const customTemplate = [{
     role: 'appMenu',
     submenu: [{
@@ -74,7 +79,7 @@ app.whenReady().then(() => {
     console.log('Sift ------------ Created By Dan Bagan');
     console.log('='.repeat(40));
 
-    app.setAppUserModelId("com.squirrel." + app.getName());
+    app.setAppUserModelId("Sift");
 
     createWindow();
 });
@@ -89,7 +94,7 @@ if (require('electron-squirrel-startup')) {
 
 
 function createWindow() {
-    const iconPath = path.join(__dirname, 'imgs/favicon/favicon_alt.ico');
+    const iconPath = path.join(__dirname, 'imgs/favicon/app_2.ico');
     const win = new BrowserWindow({
         //minWidth: 1535,
         //minHeight: 860,

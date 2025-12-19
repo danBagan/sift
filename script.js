@@ -15,6 +15,16 @@ const minScale = 0.5;
 const maxScale = 2.0;
 
 
+// AUDIO & NOTIFICATION SECTION
+const completeSound = new Audio('sounds/complete.mp3');
+const step_1 = new Audio('sounds/step_1.mp3');
+const step_2 = new Audio('sounds/step_2.mp3');
+const step_3 = new Audio('sounds/step_3.mp3');
+
+let notifiedCards = new Set();
+const NOTIFICATION_COOLDOWN = 3000;
+// ----------------------------
+
 function initializeForFirstTimeUser() {
     const hasUsedBefore = localStorage.getItem('kanbanInitialized');
 
@@ -252,6 +262,29 @@ function handleDragEnd(e) {
     document.querySelectorAll('.cards').forEach(c => c.classList.remove('drag-over'));
 }
 
+
+function truncateTextForNotifications(text, maxLength) {
+    if (text.length <= maxLength) return text;
+
+    const truncated = text.substring(0, maxLength);
+    const lastSpace = truncated.lastIndexOf(' ');
+
+    return (lastSpace > 0 ? truncated.substring(0, lastSpace) : truncated) + '...';
+}
+
+function playProgressSound(track_name) {
+    if (track_name === 'step_1') {
+        step_1.currentTime = 0;
+        step_1.play();
+    } else if (track_name === 'step_2') {
+        step_2.currentTime = 0;
+        step_2.play();
+    } else if (track_name === 'step_3') {
+        step_3.currentTime = 0;
+        step_3.play();
+    }
+}
+
 document.querySelectorAll('.cards').forEach(container => {
     container.addEventListener('dragover', e => {
         e.preventDefault();
@@ -276,10 +309,47 @@ document.querySelectorAll('.cards').forEach(container => {
             saveCards();
             renderAllCards();
 
+
+
+            if (oldColumn === 'backlog' && newColumn === 'in-progress') {
+                step_1.currentTime = 0;
+                step_1.volume = 0.4;
+                step_1.play();
+            } else if (oldColumn === 'in-progress' && newColumn === 'testing') {
+                step_2.currentTime = 0;
+                step_2.volume = 0.4;
+                step_2.play();
+            } else if (oldColumn === 'testing' && newColumn === 'done') {
+                step_3.currentTime = 0;
+                step_3.volume = 0.4;
+                step_3.play();
+            }
             // Confetti when moved to Done!
+            //This shows a notification on Windows when a card is moved into the 'DONE' column
+            //Tag: Rate limited for notification showing, sound playing and confetti created.
             if (newColumn === 'done' && oldColumn !== 'done') {
-                console.log('Triggering Confetti!');
-                createConfetti();
+
+                if (!notifiedCards.has(cardId)) {
+                    console.log('Triggering Confetti!');
+                    createConfetti();
+                    completeSound.currentTime = 0;
+                    completeSound.volume = 0.6;
+                    completeSound.play();
+
+
+                    if (!notifiedCards.has(cardId)) {
+                        new Notification('🎉 Task Completed!', {
+                            title: 'Task Completed!',
+                            body: truncateTextForNotifications(card.text, 50),
+                            silent: true
+                        });
+
+                        notifiedCards.add(cardId);
+                        setTimeout(() => {
+                            notifiedCards.delete(cardId);
+                        }, NOTIFICATION_COOLDOWN);
+                    }
+                }
             }
         }
     });

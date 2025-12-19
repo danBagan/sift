@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Space Grotesk', 'Arial Black', Arial, sans-serif;
-    background: #fef6e4;
+    /*background: #fef6e4;*/
     min-height: 100vh;
     padding: 20px;
     overflow: hidden;
@@ -89,11 +89,10 @@ body {
 
 #app-logo {
     position: absolute;
-    top: 10px;
+    top: 20px;
     left: 10px;
     z-index: 100;
-    width: 30px;
-    ;
+    width: 64px;
 }
 
 .container {
@@ -714,7 +713,7 @@ h3.editing {
 .screenshot-container {
     margin-top: -60px;
     padding: 60px;
-    background: #fef6e4;
+    background: transparent;
 }
 
 .progress-container {
@@ -821,7 +820,7 @@ h3.editing {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: #fef6e4;
+    background: linear-gradient(to top left, #c2410c, #f97316, #fdba74);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -837,7 +836,7 @@ h3.editing {
     width: 128px;
     height: auto;
     margin-bottom: 10px;
-    /*animation: pulse 2s ease-in-out infinite;*/
+    animation: pulse 2s ease-in-out infinite;
     /**filter: drop-shadow(6px 6px 0px #f582ae);**/
 }
 
@@ -923,46 +922,24 @@ h3.editing {
 
     to {
         opacity: 0;
-        transform: scale(1.05);
+        transform: scale(1.1);
     }
 }
 
-.sort-btn {
-    padding: 10px 18px;
-    border: 3px solid #001858;
-    background: #ffffff;
-    color: #001858;
-    cursor: pointer;
-    font-family: 'Space Grotesk', 'Arial Black', Arial, sans-serif;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 0.85em;
-    box-shadow: 3px 3px 0px #001858;
-    transition: all 0.1s;
-    margin-bottom: 10px;
-    width: 100%;
-}
+.dashed-grid-paper {
 
-.sort-btn:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px #001858;
-}
+    --grid-size: 30px;
+    --grid-strength: 1px;
+    --grid-dash: 10px;
+    --grid-gap: 5px;
+    --grid-color: #00175817;
+    --paper-color: #fef6e4;
 
-.sort-btn:active {
-    transform: translate(1px, 1px);
-    box-shadow: 1px 1px 0px #001858;
-}
-
-.sort-btn.active {
-    background: #72ddf7;
-}
-
-.stats {
-    font-size: 0.5em;
-    font-weight: 700;
-    color: #001858;
-    opacity: 0.6;
-    margin-left: 15px;
-    text-shadow: none;
-    letter-spacing: 0;
+    background-color: var(--paper-color);
+    background-size: var(--grid-dash) var(--grid-dash), var(--grid-size) var(--grid-size);
+    background-image:
+        linear-gradient(to bottom, transparent var(--grid-gap), var(--paper-color) var(--grid-gap)),
+        linear-gradient(to right, var(--grid-color) var(--grid-strength), transparent var(--grid-strength)),
+        linear-gradient(to right, transparent var(--grid-gap), var(--paper-color) var(--grid-gap)),
+        linear-gradient(to bottom, var(--grid-color) var(--grid-strength), transparent var(--grid-strength));
 }

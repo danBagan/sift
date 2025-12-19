@@ -56,7 +56,7 @@ function loadCards() {
 async function displayVersion() {
     try {
         const version = await window.electronAPI.getAppVersion();
-        document.getElementById('versionInfo').textContent = `v${version}`;
+        document.getElementById('versionInfo').textContent = `Sift v${version}`;
     } catch (err) {
         console.error('Error fetching app version:', err);
         document.getElementById('versionInfo').textContent = 'v?';

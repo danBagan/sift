@@ -3,8 +3,6 @@ const https = require('https');
 const path = require('path');
 const GLOBAL_currentVersion = app.getVersion();
 
-
-const isMac = process.platform === 'darwin';
 const customTemplate = [{
     role: 'appMenu',
     submenu: [{
@@ -74,7 +72,6 @@ function checkForUpdates() {
 app.whenReady().then(() => {
     console.log('='.repeat(40));
     console.log('Sift ------------ Created By Dan Bagan');
-    console.log('Version:', app.getVersion());
     console.log('='.repeat(40));
 
     app.setAppUserModelId("com.squirrel." + app.getName());
@@ -105,13 +102,13 @@ function createWindow() {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
             nodeIntegration: false,
-            //devTools: false
+            devTools: true
         },
-        autoHideMenuBar: true
+        //autoHideMenuBar: true
     });
 
     const customMenu = Menu.buildFromTemplate(customTemplate);
-    Menu.setApplicationMenu(customMenu);
+    //Menu.setApplicationMenu(customMenu);
 
     win.loadFile(path.join(__dirname, 'index.html'));
     //Menu.setApplicationMenu(null);

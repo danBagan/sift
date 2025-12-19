@@ -278,12 +278,8 @@ document.querySelectorAll('.cards').forEach(container => {
 
             // Confetti when moved to Done!
             if (newColumn === 'done' && oldColumn !== 'done') {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#f582ae', '#72ddf7', '#ffd803', '#8bd3dd']
-                });
+                console.log('Triggering Confetti!');
+                createConfetti();
             }
         }
     });
@@ -683,6 +679,30 @@ document.getElementById('exportBtn').addEventListener('click', function () {
         });
     });
 });
+
+
+// ==============CONFETTI==============
+function createConfetti() {
+    const colors = ['#f582ae', '#72ddf7', '#ffd803', '#8bd3dd'];
+    const confettiCount = 100;
+
+    for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti-piece';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDelay = Math.random() * 3 + 's';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = (Math.random() * 10 + 5) + 'px';
+        confetti.style.height = (Math.random() * 10 + 5) + 'px';
+
+        document.body.appendChild(confetti);
+
+        // Remove after animation
+        setTimeout(() => confetti.remove(), 4000);
+    }
+}
+
+// ====================================
 
 //Testing
 function logWindowSize() {

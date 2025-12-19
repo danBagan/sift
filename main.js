@@ -102,9 +102,9 @@ function createWindow() {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
             nodeIntegration: false,
-            devTools: true
+            devTools: false
         },
-        //autoHideMenuBar: true
+        autoHideMenuBar: true
     });
 
     const customMenu = Menu.buildFromTemplate(customTemplate);

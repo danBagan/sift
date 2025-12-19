@@ -946,3 +946,25 @@ h3.editing {
         linear-gradient(to right, transparent var(--grid-gap), var(--paper-color) var(--grid-gap)),
         linear-gradient(to bottom, var(--grid-color) var(--grid-strength), transparent var(--grid-strength));
 }
+
+.confetti-piece {
+    position: fixed;
+    top: -10px;
+    z-index: 99999;
+    animation: confetti-fall 1.5s linear forwards;
+    pointer-events: none;
+    border: 2px solid #001858;
+    box-shadow: 2px 2px 0px #001858;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(0) rotateZ(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotateZ(360deg);
+        opacity: 0;
+    }
+}

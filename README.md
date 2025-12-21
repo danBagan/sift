@@ -8,6 +8,9 @@
   <img src="imgs/assets/app-2.png" alt="Sift Neo-Brutalist Interface Screenshot" width="600"/>
 </p>
 
+## Follow Us For Updates
+![twitter](https://www.readmecodegen.com/api/social-icon?name=twitter&size=32&animation=glow&textAlignment=horizontal)
+
 ## ✨ The Premise
 
 Tired of feature bloat, complex pricing tiers, and interfaces that try too hard? **Sift** is your antidote.

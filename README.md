@@ -9,7 +9,7 @@
 </p>
 
 ## 🔗 Follow Us For Updates
-[![twitter](https://www.readmecodegen.com/api/social-icon?name=twitter&size=32&animation=tada&link=x.com%2Fapp_sift)](x.com/app_sift)
+Twitter [![twitter](https://www.readmecodegen.com/api/social-icon?name=twitter&size=32&animation=tada&link=x.com%2Fapp_sift)](x.com/app_sift)
 
 ## ✨ The Premise
 

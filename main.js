@@ -3,7 +3,6 @@ const https = require('https');
 const path = require('path');
 const GLOBAL_currentVersion = app.getVersion();
 
-
 //AUDIO SECTION
 
 // ------------

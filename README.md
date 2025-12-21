@@ -20,7 +20,7 @@ We embrace a **Neo-Brutalist** design ethos—focusing on clarity, strong typogr
 
 ---
 **FOLLOW US ON TWITTER FOR UPDATES**
-<a align="center" href="https://x.com/app_sift"><img src="https://raw.githubusercontent.com/CLorant/readme-social-icons/097d0b23dcc0d22ba7710f6c113fafd321624a79/large/colored/twitter.svg" /></a>
+<a align="center" href="https://x.com/app_sift" target="_blank"><img src="https://raw.githubusercontent.com/CLorant/readme-social-icons/097d0b23dcc0d22ba7710f6c113fafd321624a79/large/colored/twitter.svg" /></a>
 ---
 ## 💡 Key Features & Brutalist Simplicity
 

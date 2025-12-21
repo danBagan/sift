@@ -31,6 +31,69 @@ let isDrawing = false;
 let currentPath = null;
 let points = [];
 
+
+// Resizing
+const sidebar = document.getElementById('ink-sidebar');
+const resizer = document.getElementById('sidebar-resizer');
+let isResizing = false;
+
+window.addEventListener('resize', () => {
+    const maxWidth = window.innerWidth / 2;
+
+    if (parseInt(sidebar.style.width) > maxWidth) {
+        sidebar.style.width = `${maxWidth}px`;
+    }
+})
+
+resizer.addEventListener('mousedown', (e) => {
+    isResizing = true;
+    document.body.style.cursor = 'col-resize';
+
+    document.body.style.userSelect = 'none';
+});
+
+resizer.addEventListener('dblclick', () => {
+    const maxWidth = window.innerWidth / 2;
+    const defaultWidth = 400;
+
+    const currentWidth = parseInt(sidebar.style.width) || defaultWidth;
+
+    if (currentWidth >= maxWidth - 5) {
+        sidebar.style.width = `${defaultWidth}px`;
+    } else {
+        sidebar.style.width = `${maxWidth}px`;
+    }
+
+    sidebar.style.transition = 'width 0.3s ease-in-out, transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1)';
+
+
+    setTimeout(() => {
+        sidebar.style.transition = 'transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1)';
+    }, 300);
+});
+
+window.addEventListener('mousemove', (e) => {
+    if (!isResizing) return;
+
+    let newWidth = window.innerWidth - e.clientX;
+
+    const minWidth = 200;
+    const maxWidth = window.innerWidth / 2;
+
+    if (newWidth > minWidth && newWidth < maxWidth) {
+        sidebar.style.width = `${newWidth}px`;
+    } else if (newWidth >= maxWidth) {
+        sidebar.style.width = `${maxWidth}px`;
+    }
+});
+
+window.addEventListener('mouseup', () => {
+    if (isResizing) {
+        isResizing = false;
+        document.body.style.cursor = 'default';
+        document.body.style.userSelect = 'auto';
+    }
+});
 // Drawing settings
 let currentStrokeWidth = 2;
 let currentStrokeColor = '#001858';
@@ -93,6 +156,7 @@ document.querySelectorAll('.tool-btn').forEach(btn => {
 // Start drawing
 svg.addEventListener('mousedown', (e) => {
     isDrawing = true;
+    const rect = svg.getBoundingClientRect();
     points = [];
 
     const coords = getCoordinates(e);

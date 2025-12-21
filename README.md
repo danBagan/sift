@@ -19,7 +19,9 @@ We embrace a **Neo-Brutalist** design ethos—focusing on clarity, strong typogr
 **The best part? It's 100% FREE. No hidden costs, no premium features, just pure task management.**
 
 ---
-
+FOLLOW US ON TWITTER FOR UPDATES
+<a href="https://x.com/app_sift"><img src="https://raw.githubusercontent.com/CLorant/readme-social-icons/097d0b23dcc0d22ba7710f6c113fafd321624a79/large/colored/twitter.svg" /></a>
+---
 ## 💡 Key Features & Brutalist Simplicity
 
 | Feature Category          | Description                                                                                    | Core Value              |

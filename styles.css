@@ -968,3 +968,122 @@ h3.editing {
         opacity: 0;
     }
 }
+
+
+#ink-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 450px;
+    height: 100vh;
+    background: #ffffff;
+    border-left: 4px solid #001858;
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    box-shadow: -8px 0 0px #001858;
+}
+
+#ink-sidebar.visible {
+    transform: translateX(0);
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #ffffff;
+}
+
+.sidebar-header {
+    padding: 20px;
+    background: #72ddf7;
+    border-bottom: 4px solid #001858;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    box-shadow: inset 0 -4px 0 rgba(0, 24, 88, 0.2);
+}
+
+.sidebar-header h3 {
+    font-family: 'Space Grotesk', 'Arial Black', Arial, sans-serif;
+    font-size: 1.3em;
+    font-weight: 900;
+    color: #001858;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin: 0;
+    text-shadow: 2px 2px 0px rgba(0, 24, 88, 0.1);
+}
+
+#clear-ink {
+    padding: 10px 18px;
+    border: 3px solid #001858;
+    background: #f582ae;
+    color: #001858;
+    cursor: pointer;
+    font-family: 'Space Grotesk', 'Arial Black', Arial, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    box-shadow: 3px 3px 0px #001858;
+    transition: all 0.1s;
+}
+
+#clear-ink:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #001858;
+}
+
+#clear-ink:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #001858;
+}
+
+#ink-layer {
+    flex-grow: 1;
+    background: #fef6e4;
+    cursor: crosshair;
+    touch-action: none;
+    border-top: 2px solid #001858;
+    /* Add subtle grid like paper */
+    background-image:
+        linear-gradient(rgba(0, 24, 88, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 24, 88, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.tool-selector {
+    display: flex;
+    gap: 6px;
+}
+
+.tool-btn {
+    padding: 8px 14px;
+    border: 3px solid #001858;
+    background: #ffffff;
+    color: #001858;
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    box-shadow: 2px 2px 0px #001858;
+    transition: all 0.1s;
+}
+
+.tool-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px #001858;
+}
+
+.tool-btn.active {
+    background: #ffd803;
+}

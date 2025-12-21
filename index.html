@@ -13,8 +13,6 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap"
             rel="stylesheet">
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     </head>
     <body class="dashed-grid-paper">
         <img id="app-logo" src="imgs/assets/app-name.png"
@@ -31,6 +29,25 @@
             </div>
         </div>
 
+        <div id="ink-sidebar" class="sidebar-hidden">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    <h3>Draw</h3>
+                    <div class="header-buttons">
+                        <div class="tool-selector">
+                            <button class="tool-btn active" data-width="2"
+                                data-color="#001858">Pen</button>
+                            <button class="tool-btn" data-width="6"
+                                data-color="#001858">Marker</button>
+                            <button class="tool-btn" data-width="1"
+                                data-color="#001858">Fine</button>
+                        </div>
+                        <button id="clear-ink">Clear</button>
+                    </div>
+                </div>
+                <svg id="ink-layer" xmlns="http://www.w3.org/2000/svg"></svg>
+            </div>
+        </div>
         <div class="canvas-wrapper" id="canvasWrapper">
             <div class="canvas-content" id="canvasContent">
                 <div class="screenshot-container">
@@ -126,127 +143,130 @@
                                     Card</button>
                             </div>
                         </div>
-                        <!--
+
                         <div class="export-section">
                             <button class="btn-export" id="exportBtn">📸 Export
                                 as
                                 PNG</button>
-                        </div>-->
+
+                        </div>
+
                     </div>
-
+                    <br>
+                    <h3 id="control-hint">Hold 'Middle Mouse Button' and drag to
+                        move
+                        canvas.</h3>
                 </div>
-                <h3 id="control-hint">Hold 'Middle Mouse Button' and drag to
-                    move
-                    canvas.</h3>
-            </div>
-            <div class="modal confirm-modal" id="confirmModal">
-                <div class="modal-content">
-                    <h2>Delete Card</h2>
-                    <p>Are you sure you want to delete this card? This action
-                        cannot be undone.</p>
-                    <div class="modal-actions">
-                        <button type="button" class="btn btn-cancel"
-                            onclick="closeConfirmModal()">Cancel</button>
-                        <button type="button" class="btn btn-confirm"
-                            onclick="confirmDelete()">Delete</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="keyboard-shortcuts" id="shortcuts">
-                <h4>⌨️ Keyboard Shortcuts</h4>
-                <ul>
-                    <li><kbd>Tab</kbd> Focus search</li>
-                    <li><kbd>N</kbd> Add card (Backlog)</li>
-                    <li><kbd>ESC</kbd> Close modal</li>
-                    <li><kbd>.</kbd> Reset Canvas</li>
-                    <li><kbd>?</kbd> Toggle this help</li>
-                    <li><kbd>Middle Mouse Button</kbd> to move canvas</li>
-
-                </ul>
-
-            </div>
-
-            <div class="zoom-controls">
-                <button class="zoom-btn" id="zoomOut"
-                    title="Canvas Zoom Out">-</button>
-                <div class="zoom-level" id="zoomLevel">100%</div>
-                <button class="zoom-btn" id="zoomIn"
-                    title="Canvas Zoom In">+</button>
-                <button class="zoom-btn" id="resetZoom"
-                    title="Reset Canvas">⟲</button>
-            </div>
-            <!--
-            <div class="version-info" id="versionInfo">v1.0.0</div>
-            -->
-            <div class="modal" id="cardModal">
-                <div class="modal-content">
-                    <h2 id="modalTitle">Add New Card</h2>
-                    <form id="cardForm">
-                        <div class="form-group">
-                            <label for="cardText">Task
-                                Description</label>
-                            <textarea id="cardText" required
-                                placeholder="Describe your task..."></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Priority</label>
-                            <div class="priority-options">
-                                <div class="priority-option low">
-                                    <input type="radio"
-                                        id="priority-low"
-                                        name="cardPriority" value="low">
-                                    <label
-                                        for="priority-low">Low</label>
-                                </div>
-                                <div class="priority-option medium">
-                                    <input type="radio"
-                                        id="priority-medium"
-                                        name="cardPriority"
-                                        value="medium"
-                                        checked>
-                                    <label
-                                        for="priority-medium">Medium</label>
-                                </div>
-                                <div class="priority-option high">
-                                    <input type="radio"
-                                        id="priority-high"
-                                        name="cardPriority"
-                                        value="high">
-                                    <label
-                                        for="priority-high">High</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Tags</label>
-                            <div class="tag-selector">
-                                <div class="tag-option tag-art"
-                                    data-tag="art">Art</div>
-                                <div class="tag-option tag-code"
-                                    data-tag="code">Code</div>
-                                <div class="tag-option tag-design"
-                                    data-tag="design">Design</div>
-                                <div class="tag-option tag-audio"
-                                    data-tag="audio">Audio</div>
-                                <div class="tag-option tag-ui"
-                                    data-tag="ui">UI</div>
-                                <div class="tag-option tag-bug"
-                                    data-tag="bug">Bug</div>
-                            </div>
-                        </div>
+                <div class="modal confirm-modal" id="confirmModal">
+                    <div class="modal-content">
+                        <h2>Delete Card</h2>
+                        <p>Are you sure you want to delete this card? This
+                            action
+                            cannot be undone.</p>
                         <div class="modal-actions">
                             <button type="button" class="btn btn-cancel"
-                                onclick="closeModal()">Cancel</button>
-                            <button type="submit"
-                                class="btn btn-save">Save</button>
+                                onclick="closeConfirmModal()">Cancel</button>
+                            <button type="button" class="btn btn-confirm"
+                                onclick="confirmDelete()">Delete</button>
                         </div>
-                    </form>
+                    </div>
+                </div>
+
+                <div class="keyboard-shortcuts" id="shortcuts">
+                    <h4>⌨️ Keyboard Shortcuts</h4>
+                    <ul>
+                        <li><kbd>Tab</kbd> Focus search</li>
+                        <li><kbd>N</kbd> Add card (Backlog)</li>
+                        <li><kbd>ESC</kbd> Close modal</li>
+                        <li><kbd>.</kbd> Reset Canvas</li>
+                        <li><kbd>MMB</kbd> to move canvas</li>
+                        <li><kbd>?</kbd> Toggle this help</li>
+                        <li><kbd>Ctrl+Shift+D</kbd>toggle Scratchboard</li>
+
+                    </ul>
+
+                </div>
+
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomOut"
+                        title="Canvas Zoom Out">-</button>
+                    <div class="zoom-level" id="zoomLevel">100%</div>
+                    <button class="zoom-btn" id="zoomIn"
+                        title="Canvas Zoom In">+</button>
+                    <button class="zoom-btn" id="resetZoom"
+                        title="Reset Canvas">⟲</button>
+                </div>
+                <div class="version-info" id="versionInfo">v1.0.0</div>
+
+                <div class="modal" id="cardModal">
+                    <div class="modal-content">
+                        <h2 id="modalTitle">Add New Card</h2>
+                        <form id="cardForm">
+                            <div class="form-group">
+                                <label for="cardText">Task
+                                    Description</label>
+                                <textarea id="cardText" required
+                                    placeholder="Describe your task..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Priority</label>
+                                <div class="priority-options">
+                                    <div class="priority-option low">
+                                        <input type="radio"
+                                            id="priority-low"
+                                            name="cardPriority" value="low">
+                                        <label
+                                            for="priority-low">Low</label>
+                                    </div>
+                                    <div class="priority-option medium">
+                                        <input type="radio"
+                                            id="priority-medium"
+                                            name="cardPriority"
+                                            value="medium"
+                                            checked>
+                                        <label
+                                            for="priority-medium">Medium</label>
+                                    </div>
+                                    <div class="priority-option high">
+                                        <input type="radio"
+                                            id="priority-high"
+                                            name="cardPriority"
+                                            value="high">
+                                        <label
+                                            for="priority-high">High</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Tags</label>
+                                <div class="tag-selector">
+                                    <div class="tag-option tag-art"
+                                        data-tag="art">Art</div>
+                                    <div class="tag-option tag-code"
+                                        data-tag="code">Code</div>
+                                    <div class="tag-option tag-design"
+                                        data-tag="design">Design</div>
+                                    <div class="tag-option tag-audio"
+                                        data-tag="audio">Audio</div>
+                                    <div class="tag-option tag-ui"
+                                        data-tag="ui">UI</div>
+                                    <div class="tag-option tag-bug"
+                                        data-tag="bug">Bug</div>
+                                </div>
+                            </div>
+                            <div class="modal-actions">
+                                <button type="button" class="btn btn-cancel"
+                                    onclick="closeModal()">Cancel</button>
+                                <button type="submit"
+                                    class="btn btn-save">Save</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <script src="script.js"></script>
-        <script>
+            <script src="script.js"></script>
+            <script src="lib/html2canvas.min.js"></script>
+            <script>
         // Show body immediately
         document.body.classList.add('ready');
         
@@ -260,5 +280,5 @@
         });
     </script>
 
-    </body>
-</html>
+        </body>
+    </html>

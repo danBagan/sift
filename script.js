@@ -25,6 +25,172 @@ let notifiedCards = new Set();
 const NOTIFICATION_COOLDOWN = 3000;
 // ----------------------------
 
+// DRAWING SECTION
+const svg = document.getElementById('ink-layer');
+let isDrawing = false;
+let currentPath = null;
+let points = [];
+
+// Drawing settings
+let currentStrokeWidth = 2;
+let currentStrokeColor = '#001858';
+
+// Initialize SVG dimensions
+function initSVG() {
+    const rect = svg.getBoundingClientRect();
+    svg.setAttribute('width', rect.width);
+    svg.setAttribute('height', rect.height);
+    svg.setAttribute('viewBox', `0 0 ${rect.width} ${rect.height}`);
+}
+
+initSVG();
+window.addEventListener('resize', initSVG);
+
+// Get coordinates relative to SVG
+function getCoordinates(e) {
+    const rect = svg.getBoundingClientRect();
+    const x = (e.clientX || e.touches?.[0]?.clientX) - rect.left;
+    const y = (e.clientY || e.touches?.[0]?.clientY) - rect.top;
+    return { x, y };
+}
+
+// Smooth path using quadratic curves
+function createSmoothPath(points) {
+    if (points.length < 2) return '';
+
+    let path = `M ${points[0].x} ${points[0].y}`;
+
+    for (let i = 1; i < points.length - 1; i++) {
+        const xc = (points[i].x + points[i + 1].x) / 2;
+        const yc = (points[i].y + points[i + 1].y) / 2;
+        path += ` Q ${points[i].x} ${points[i].y}, ${xc} ${yc}`;
+    }
+
+    if (points.length > 1) {
+        const last = points[points.length - 1];
+        path += ` L ${last.x} ${last.y}`;
+    }
+
+    return path;
+}
+
+// Tool selection
+document.querySelectorAll('.tool-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Remove active from all
+        document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+        // Add active to clicked
+        btn.classList.add('active');
+
+        // Update stroke settings
+        currentStrokeWidth = btn.dataset.width;
+        currentStrokeColor = btn.dataset.color;
+
+        console.log('Tool changed:', currentStrokeWidth, currentStrokeColor);
+    });
+});
+
+// Start drawing
+svg.addEventListener('mousedown', (e) => {
+    isDrawing = true;
+    points = [];
+
+    const coords = getCoordinates(e);
+    points.push(coords);
+
+    // Create new path element with CURRENT settings
+    currentPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    currentPath.setAttribute('fill', 'none');
+    currentPath.setAttribute('stroke', currentStrokeColor);  // Use current color
+    currentPath.setAttribute('stroke-width', currentStrokeWidth);  // Use current width
+    currentPath.setAttribute('stroke-linecap', 'round');
+    currentPath.setAttribute('stroke-linejoin', 'round');
+    svg.appendChild(currentPath);
+});
+
+// Draw
+svg.addEventListener('mousemove', (e) => {
+    if (!isDrawing) return;
+
+    const coords = getCoordinates(e);
+    points.push(coords);
+
+    const pathData = createSmoothPath(points);
+    currentPath.setAttribute('d', pathData);
+});
+
+// Stop drawing
+svg.addEventListener('mouseup', () => {
+    isDrawing = false;
+    points = [];
+    currentPath = null;
+    saveScratchpad();
+});
+
+svg.addEventListener('mouseleave', () => {
+    isDrawing = false;
+    points = [];
+    currentPath = null;
+    saveScratchpad();
+});
+
+// Touch support
+svg.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const mouseEvent = new MouseEvent('mousedown', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+    svg.dispatchEvent(mouseEvent);
+});
+
+svg.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const mouseEvent = new MouseEvent('mousemove', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+    svg.dispatchEvent(mouseEvent);
+});
+
+svg.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    const mouseEvent = new MouseEvent('mouseup', {});
+    svg.dispatchEvent(mouseEvent);
+});
+
+// Clear canvas
+document.getElementById('clear-ink').addEventListener('click', () => {
+    svg.innerHTML = '';
+    saveScratchpad();
+});
+
+// Open scratchpad with Ctrl+Shift+D
+document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
+        e.preventDefault(); // Prevent any default browser behavior
+
+        const sidebar = document.getElementById('ink-sidebar');
+
+        // Toggle the sidebar
+        if (sidebar.classList.contains('visible')) {
+            sidebar.classList.remove('visible');
+        } else {
+            sidebar.classList.add('visible');
+        }
+    }
+
+
+
+    // Close with ESC
+    if (e.key === 'Escape' && document.getElementById('ink-sidebar').classList.contains('visible')) {
+        document.getElementById('ink-sidebar').classList.remove('visible');
+    }
+});
+// ----------------------------
+
 function initializeForFirstTimeUser() {
     const hasUsedBefore = localStorage.getItem('kanbanInitialized');
 
@@ -330,7 +496,7 @@ document.querySelectorAll('.cards').forEach(container => {
             if (newColumn === 'done' && oldColumn !== 'done') {
 
                 if (!notifiedCards.has(cardId)) {
-                    console.log('Triggering Confetti!');
+                    //console.log('Triggering Confetti!');
                     createConfetti();
                     completeSound.currentTime = 0;
                     completeSound.volume = 0.6;
@@ -632,9 +798,26 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeModal();
         closeConfirmModal();
-        document.getElementById('shortcuts').classList.add('hide');
+        //document.getElementById('shortcuts').classList.add('hide');
     }
 });
+
+function saveScratchpad() {
+    const svgContent = document.getElementById('ink-layer').innerHTML;
+    localStorage.setItem('scratchpadContent', svgContent);
+    console.log('[i]: Scratchpad Data Saved!');
+}
+
+function loadScratchpad() {
+    const savedContent = localStorage.getItem('scratchpadContent');
+    if (savedContent) {
+        document.getElementById('ink-layer').innerHTML = savedContent;
+        console.log('[i]: Loaded Scratchpad Data');
+    }
+}
+
+loadScratchpad();
+
 
 const subtitle = document.getElementById('subtitle');
 
@@ -696,6 +879,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+
 document.getElementById('exportBtn').addEventListener('click', function () {
     const button = this;
     const originalText = button.textContent;
@@ -750,7 +934,6 @@ document.getElementById('exportBtn').addEventListener('click', function () {
     });
 });
 
-
 // ==============CONFETTI==============
 function createConfetti() {
     const colors = ['#f582ae', '#72ddf7', '#ffd803', '#8bd3dd'];
@@ -773,6 +956,9 @@ function createConfetti() {
 }
 
 // ====================================
+
+// DRAWING
+
 
 //Testing
 function logWindowSize() {

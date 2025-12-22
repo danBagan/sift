@@ -29,6 +29,7 @@
             </div>
         </div>
 
+        <!--
         <div id="ink-sidebar" class="sidebar-hidden">
             <div id="sidebar-resizer"></div>
             <div class="sidebar-content">
@@ -47,6 +48,7 @@
                 <svg id="ink-layer" xmlns="http://www.w3.org/2000/svg"></svg>
             </div>
         </div>
+        -->
         <div class="canvas-wrapper" id="canvasWrapper">
             <div class="canvas-content" id="canvasContent">
                 <div class="screenshot-container">
@@ -170,7 +172,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!--
                 <div class="keyboard-shortcuts" id="shortcuts">
                     <h4>⌨️ Keyboard Shortcuts</h4>
                     <ul>
@@ -195,6 +197,7 @@
                     <button class="zoom-btn" id="resetZoom"
                         title="Reset Canvas">⟲</button>
                 </div>
+                -->
                 <div class="version-info" id="versionInfo">v1.0.0</div>
 
                 <div class="modal" id="cardModal">
@@ -261,6 +264,50 @@
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+            <div class="keyboard-shortcuts" id="shortcuts">
+                <h4>⌨️ Keyboard Shortcuts</h4>
+                <ul>
+                    <li><kbd>Tab</kbd> Focus search</li>
+                    <li><kbd>N</kbd> Add card (Backlog)</li>
+                    <li><kbd>ESC</kbd> Close modal</li>
+                    <li><kbd>.</kbd> Reset Canvas</li>
+                    <li><kbd>MMB</kbd> to move canvas</li>
+                    <li><kbd>?</kbd> Toggle this help</li>
+                    <li><kbd>Ctrl+Shift+D</kbd>toggle Scratchboard</li>
+
+                </ul>
+
+            </div>
+
+            <div class="zoom-controls">
+                <button class="zoom-btn" id="zoomOut"
+                    title="Canvas Zoom Out">-</button>
+                <div class="zoom-level" id="zoomLevel">100%</div>
+                <button class="zoom-btn" id="zoomIn"
+                    title="Canvas Zoom In">+</button>
+                <button class="zoom-btn" id="resetZoom"
+                    title="Reset Canvas">⟲</button>
+            </div>
+            <div id="ink-sidebar" class="sidebar-hidden">
+                <div id="sidebar-resizer"></div>
+                <div class="sidebar-content">
+                    <div class="sidebar-header">
+                        <h3>Draw</h3>
+                        <div class="header-buttons">
+                            <div class="tool-selector">
+                                <button class="tool-btn active"
+                                    data-width="2"
+                                    data-color="#001858">Pen</button>
+                                <button class="tool-btn" data-width="6"
+                                    data-color="#001858">Marker</button>
+                            </div>
+                            <button id="clear-ink">Clear</button>
+                        </div>
+                    </div>
+                    <svg id="ink-layer"
+                        xmlns="http://www.w3.org/2000/svg"></svg>
                 </div>
             </div>
             <script src="script.js"></script>

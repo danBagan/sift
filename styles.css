@@ -1016,11 +1016,12 @@ h3.editing {
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
     box-shadow: -8px 0 0px #001858;
-    box-shadow: -8px 0 3px rgba(0, 0, 0, 0.05);
 }
+
 
 #ink-sidebar.visible {
     transform: translateX(0);
+    box-shadow: -8px 0 3px rgba(0, 0, 0, 0.05);
 }
 
 .sidebar-content {

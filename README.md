@@ -8,6 +8,9 @@
   <img src="imgs/assets/app-2.png" alt="Sift Neo-Brutalist Interface Screenshot" width="600"/>
 </p>
 
+## Follow Us On Social Media
+<a href="https://x.com/app_sift" target="_blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="danielbagan" height="30" width="40" /></a>
+
 ## ✨ The Premise
 
 Tired of feature bloat, complex pricing tiers, and interfaces that try too hard? **Sift** is your antidote.

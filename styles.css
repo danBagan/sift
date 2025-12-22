@@ -162,6 +162,40 @@ h3.editing {
     min-width: 300px;
 }
 
+.header-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.tool-selector {
+    display: flex;
+    gap: 6px;
+}
+
+.tool-btn {
+    padding: 8px 14px;
+    border: 3px solid #001858;
+    background: #ffffff;
+    color: #001858;
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    box-shadow: 2px 2px 0px #001858;
+    transition: all 0.1s;
+}
+
+.tool-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px #001858;
+}
+
+.tool-btn.active {
+    background: #ffd803;
+}
+
 .search-box:focus {
     outline: none;
     box-shadow: 6px 6px 0px #001858;
@@ -979,12 +1013,10 @@ h3.editing {
     background: #ffffff;
     border-left: 4px solid #001858;
     z-index: 2000;
-    display: flex;
-    flex-direction: row;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
     box-shadow: -8px 0 0px #001858;
-    transition: transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    box-shadow: -8px 0 3px rgba(0, 0, 0, 0.05);
 }
 
 #ink-sidebar.visible {
@@ -994,8 +1026,6 @@ h3.editing {
 .sidebar-content {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    width: 100%;
     height: 100%;
     background: #ffffff;
 }
@@ -1048,8 +1078,6 @@ h3.editing {
 
 #ink-layer {
     flex-grow: 1;
-    width: 100%;
-    height: 100%;
     background: #fef6e4;
     cursor: crosshair;
     touch-action: none;
@@ -1059,53 +1087,4 @@ h3.editing {
         linear-gradient(rgba(0, 24, 88, 0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 24, 88, 0.05) 1px, transparent 1px);
     background-size: 20px 20px;
-}
-
-.header-buttons {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.tool-selector {
-    display: flex;
-    gap: 6px;
-}
-
-.tool-btn {
-    padding: 8px 14px;
-    border: 3px solid #001858;
-    background: #ffffff;
-    color: #001858;
-    cursor: pointer;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 0.75em;
-    box-shadow: 2px 2px 0px #001858;
-    transition: all 0.1s;
-}
-
-.tool-btn:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0px #001858;
-}
-
-.tool-btn.active {
-    background: #ffd803;
-}
-
-
-#sidebar-resizer {
-    width: 6px;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    cursor: col-resize;
-    transition: background 0.2s;
-}
-
-#sidebar-resiser:hover {
-    background: rgba(0, 0, 0, 0.1);
 }

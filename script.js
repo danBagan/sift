@@ -922,7 +922,7 @@ document.getElementById('exportBtn').addEventListener('click', function () {
 
             const timePart = `${hours}-${minutes}`;
 
-            const filename = `kanban-board-${datePart}_${timePart}.png`;
+            const filename = `sift-${datePart}_${timePart}.png`;
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
